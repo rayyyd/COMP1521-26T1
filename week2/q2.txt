@@ -1,4 +1,0 @@
-1. inspection
-2. printf debugging (syscall)
-3. mipsy web debugger
-4. start debugging in C.
