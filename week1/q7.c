@@ -21,14 +21,19 @@ int main(int argc, char *argv[]) {
 //     return result;
 // }
 
+
 int sum(int n) {
-    // stop condition
-    if (n == 1) {
-        return 1;
+    // set the stop condition
+    if (n == 0) {
+        return 0;
     }
 
-    // progression condition
+
+    // somehow call itself to progress
     return n + sum(n - 1);
-
-
+        10   + sum(9);
+             +   9 + sum(8);
+                   + 8 + sum(7)
+                    + ...
+                       + 1 + 0
 }
