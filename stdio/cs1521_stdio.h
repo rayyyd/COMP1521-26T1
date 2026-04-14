@@ -1,1 +1,0 @@
-/web/cs1521/26T1/activities/stdio/files.ln/cs1521_stdio.h
