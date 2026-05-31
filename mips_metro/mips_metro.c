@@ -1,1 +1,0 @@
-/web/cs1521/26T1/activities/mips_metro/files.ln/mips_metro.c
