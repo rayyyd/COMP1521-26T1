@@ -9,8 +9,11 @@ main:
 #         printf("%d\n", x);
 #     }
 
+	li	$t8, 12
+	sw	$t8, main_sys
 main__INIT:
 	li	$t0, 24    #x = $t0
+
 main__COND:
 	# take opp cond. then go to the end
 	bge	$t0, 42, main__END
@@ -21,11 +24,15 @@ main__BODY:
 
 	li	$v0, 11
 	li	$a0, '\n'     #printf("\n')
-	syscall
+	
+main_sys:
+	.space	4
 main__INC:
 	# x = x + 3
 	addi	$t0, $t0, 3
 	b	main__COND
+
+
 main__END:
 	jr	$ra
 
