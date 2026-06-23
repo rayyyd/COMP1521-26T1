@@ -29,9 +29,35 @@ points_loop_cond:
 
 					# TODO: Complete these three!
 					# int row = my_points[i].row;
-					# int col = my_points[i].col;
-					# int height = topography_grid[row][col];
+	#arrays require an offset to be added (do this first)
+	# struct requires an offset to be added (do this second)
+	la	$t6, my_points
 
+	mul	$t7, $t0, 8   #one element size is {int, int} = 8.
+	add	$t6, $t6, $t7
+	
+	#add offset for struct
+	add	$t6, $t6, 0
+	lw	$t1, ($t6)
+
+
+
+					# int col = my_points[i].col;
+	la	$t6, my_points
+
+	mul	$t7, $t0, 8   #one element size is {int, int} = 8.
+	add	$t6, $t6, $t7
+	
+	#add offset for struct
+	add	$t6, $t6, 4
+	lw	$t2, ($t6)
+					# int height = topography_grid[row][col];
+	# row * number_cols + cols
+	mul	$t6, $t1, MAP_SIZE
+	add	$t6, $t6, $t2
+	mul	$t6, $t6, 4   #multiply by element size
+
+	lw	$t3, topography_grid($t6)
 					# printf("Height at %d,%d=%d\n", row, col, height);
 
 	li	$v0, 4			# $v0 = 4 (print string)

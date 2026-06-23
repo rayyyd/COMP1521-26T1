@@ -31,7 +31,51 @@ sum4:
 	#TODO
 
 	# what registers need to be in $s registers?
+	# c, d, res1
 	# what registers should push and pop?
+
+	# int sum4(int a, int b, int c, int d) {
+	# 	int res1 = sum2(a, b);
+	# 	int res2 = sum2(c, d);
+	# 	return sum2 (res1, res2);
+	# }
+	push	$ra
+	push	$s0
+	push	$s1
+	push	$s2
+	push	$s3
+	push	$s4
+sum4__body:
+	move	$s2, $a2
+	move	$s3, $a3     #saving c and d
+
+	move	$a0, $a0
+	move	$a1, $a1             #int res1 = sum2(a, b)
+	jal	sum2
+
+	move	$s0, $v0        #we need to save res1
+
+	move	$a0, $s2
+	move	$a1, $s3       #int res2 = sim2(c, d)
+	jal	sum2
+
+	# output res2 is in $v0
+
+	move	$a0, $s0
+	move	$a1, $v0
+	jal	sum2
+
+	# output is already in $v0
+sum4__epilogue:
+	pop	$s4
+	pop	$s3
+	pop	$s2
+	pop	$s1
+	pop	$s0
+	pop	$ra
+	jr	$ra
+
+
 
 
 sum2:                           # sum2 doesn't call other functions,
